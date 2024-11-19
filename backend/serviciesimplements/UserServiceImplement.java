@@ -15,25 +15,25 @@ public class UserServiceImplement implements UserServiceInterface {
 
     //Listar Usuario
     @Override
-    public List<User> listar() {return userRepository.findAll();}
+    public List<User> list() {return userRepository.findAll();}
 
     //Registrar Usuario
     @Override
-    public User registrar(User user) {return userRepository.save(user);}
+    public User insert(User user) {return userRepository.save(user);}
 
     //Listar por Id Usuario
     @Override
-    public User listarId(Long id) {
+    public User listId(Long id) {
         return userRepository.findById(id).orElse(new User());
     }
 
     //Actualizar Usuario
     @Override
-    public void actualizar(User user) {userRepository.save(user); }
+    public void update(User user) {userRepository.save(user); }
 
     //Eliminar Usuario
     @Override
-    public void eliminar(Long id) {
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -43,3 +43,4 @@ public class UserServiceImplement implements UserServiceInterface {
    //     return userRepository.countAppointmentXUser();
  //   }
 }
+
