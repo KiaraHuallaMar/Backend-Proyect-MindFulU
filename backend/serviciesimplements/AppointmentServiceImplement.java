@@ -15,25 +15,25 @@ public class AppointmentServiceImplement implements AppointmentServicesInterface
 
     //Listar Cita
     @Override
-    public List<Appointment> listar() {return appointmentRepository.findAll();}
+    public List<Appointment> list() {return appointmentRepository.findAll();}
 
     //Registrar Cita
     @Override
-    public Appointment registrar(Appointment appointment) {return appointmentRepository.save(appointment);}
+    public Appointment insert(Appointment appointment) {return appointmentRepository.save(appointment);}
 
     //Listar por Id Cita
     @Override
-    public Appointment listarId(Long id) {
+    public Appointment listId(Long id) {
         return appointmentRepository.findById(id).orElse(new Appointment());
     }
 
     //Actualizar Cita
     @Override
-    public void actualizar(Appointment v) {appointmentRepository.save(v); }
+    public void update(Appointment v) {appointmentRepository.save(v); }
 
     //Eliminar Cita
     @Override
-    public void eliminar(Long id) {
+    public void delete(Long id) {
         appointmentRepository.deleteById(id);
     }
 
