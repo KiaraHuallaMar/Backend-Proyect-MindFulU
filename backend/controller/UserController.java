@@ -2,6 +2,7 @@ package edu.com.upc.minfulu.dbprojectmindfulu.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import edu.com.upc.minfulu.dbprojectmindfulu.dtos.UserDTO;
 import edu.com.upc.minfulu.dbprojectmindfulu.entities.User;
@@ -26,9 +27,10 @@ public class UserController {
 
     //Listar Usuario
     @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
     public List<UserDTO> obtenerUsuarios(){
 
-        return userServiceInterface.listar().stream().map(x->{
+        return userServiceInterface.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,UserDTO.class);
         }).collect(Collectors.toList());
@@ -46,33 +48,36 @@ public class UserController {
     }
 */
     @PostMapping("/registrar")
-
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
     public void registrar(@RequestBody UserDTO userDTO) {
         ModelMapper m = new ModelMapper();
         User user = m.map(userDTO, User.class);
-        userServiceInterface.registrar(user);
+        userServiceInterface.insert(user);
     }
 
     //Listar por Id Usuario
     @GetMapping("/{id}")
-    public UserDTO listarId(@PathVariable("id") Long id){
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
+    public UserDTO listId(@PathVariable("id") Long id){
         ModelMapper m = new ModelMapper();
-        UserDTO userDTO=m.map(userServiceInterface.listarId(id),UserDTO.class);
+        UserDTO userDTO=m.map(userServiceInterface.listId(id),UserDTO.class);
         return userDTO;
     }
 
     //Actualizar Usuario
     @PutMapping("/actualizar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
     public void actualizar(@RequestBody UserDTO userDTO){
         ModelMapper m=new ModelMapper();
         User user=m.map(userDTO,User.class);
-        userServiceInterface.actualizar(user);
+        userServiceInterface.update(user);
     }
 
     //Eliminar Usuario
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
     public void eliminar(@PathVariable("id") Long id){
-        userServiceInterface.eliminar(id);
+        userServiceInterface.delete(id);
     }
 
     //CONTAR CITAS POR USUARIO
