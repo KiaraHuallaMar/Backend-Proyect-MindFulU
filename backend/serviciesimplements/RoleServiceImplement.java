@@ -15,25 +15,25 @@ public class RoleServiceImplement implements RoleServiceInterface {
 
     //Listar Cita
     @Override
-    public List<Role> listar() {return roleRepository.findAll();}
+    public List<Role> list() {return roleRepository.findAll();}
 
     //Registrar Cita
     @Override
-    public Role registrar(Role role) {return roleRepository.save(role);}
+    public Role insert(Role role) {return roleRepository.save(role);}
 
     //Listar por Id Cita
     @Override
-    public Role listarId(int id) {
+    public Role listId(int id) {
         return roleRepository.findById(id).orElse(new Role());
     }
 
     //Actualizar Cita
     @Override
-    public void actualizar(Role role) {roleRepository.save(role); }
+    public void update(Role role) {roleRepository.save(role); }
 
     //Eliminar Cita
     @Override
-    public void eliminar(int id) {
+    public void delete(int id) {
         roleRepository.deleteById(id);
     }
 
