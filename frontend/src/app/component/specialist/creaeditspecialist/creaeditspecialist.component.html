@@ -1,0 +1,78 @@
+<div>
+  <div class="container" style="text-align: center">
+    <h1>Registrar cita</h1>
+    <form [formGroup]="form" (submit)="guardar()" class="example-form">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput formControlName="acodigo" />
+      </mat-form-field>
+      <br />
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>name</mat-label>
+          <input matInput required placeholder="name" formControlName="aname" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>lastname</mat-label>
+          <input matInput required placeholder="lastname" formControlName="alastname" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>age</mat-label>
+          <input type="number" matInput required placeholder="age" formControlName="aage" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>specialty</mat-label>
+          <input matInput required placeholder="specialty" formControlName="aspecialty" />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>phone</mat-label>
+          <input type="number" matInput required placeholder="phone" formControlName="aphone" />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field>
+            <mat-label>Cita</mat-label>
+            <mat-select formControlName="aappointment">
+              @for (food of listaCita; track food) {
+              <mat-option [value]="food.id">{{ food.appointment_type }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('aappointment')?.hasError('required')">
+              Seleccione una Cita
+            </mat-error>
+          </mat-form-field>
+          <br />
+          <mat-form-field>
+            <mat-label>Tratamiento</mat-label>
+            <mat-select formControlName="atreatment">
+              @for (food of listaTratamiento; track food) {
+              <mat-option [value]="food.id">{{ food.category_type }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('atreatment')?.hasError('required')">
+              Seleccione un Tratamiento
+            </mat-error>
+          </mat-form-field>
+
+        <br />
+        <button mat-raised-button color="primary" type="submit">
+          Aceptar
+        </button>
+  
+        <button mat-raised-button color="warn" (click)="cancel()">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </div>
+  
