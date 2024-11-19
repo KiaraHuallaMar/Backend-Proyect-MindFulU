@@ -1,7 +1,5 @@
-
 package edu.com.upc.minfulu.dbprojectmindfulu.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,30 +7,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "role")
+public class Role implements Serializable {
 
-public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username", length = 30, unique = true)
-    private String username;
+    @Column(name = "role", length = 30, unique = true)
+    private String role;
 
-    @Column(name = "password", length = 200)
-    private String password;
-
-    private Boolean enabled;
-
-    @ManyToOne
-    @JoinColumn(name = "rol_id")
-    private Role role;
 }
-
