@@ -6,25 +6,25 @@ import java.util.List;
 
 public interface UserServiceInterface {
     //Listar Usuario
-    public List<User> listar();
+    public List<User> list();
 
     //Registrar Usuario
-    public User registrar (User user);
+    public User insert (User user);
 
     //Listar por Id Usuario
-    public User listarId(Long id);
+    public User listId(Long id);
 
     //Listar por Id Usuario
     // Usuario listarId(Long id);
 
     //Actualizar Usuario
-    public void actualizar(User user);
+    public void update(User user);
 
     //Eliminar Usuario
     // public void  eliminar(int id);
 
     //Eliminar Usuario
-    void eliminar(Long id);
+    void delete(Long id);
 
    // public List<UserXAppointmentCountDTO> countAppointmentXUser();
 }
