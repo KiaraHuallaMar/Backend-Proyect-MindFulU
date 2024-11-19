@@ -1,10 +1,10 @@
 package edu.com.upc.minfulu.dbprojectmindfulu.controllers;
 
 import edu.com.upc.minfulu.dbprojectmindfulu.securities.JwtRequest;
-import edu.com.upc.minfulu.dbprojectmindfulu.securities.JwtResponse;
 import edu.com.upc.minfulu.dbprojectmindfulu.securities.JwtTokenUtil;
 import edu.com.upc.minfulu.dbprojectmindfulu.serviciesimplements.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import edu.com.upc.minfulu.dbprojectmindfulu.securities.JwtResponse;
 //Clase 3
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200", exposedHeaders = "Authorization")
 public class JwtAuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
