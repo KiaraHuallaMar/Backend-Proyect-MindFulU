@@ -1,0 +1,71 @@
+<div class="container">
+      <h1 style="text-align: center;">Listado de Citas</h1>
+      <mat-grid-list cols="1" rowHeight="4em">
+        <mat-grid-tile>
+          <input matInput (keyup)="filtrar($event)" placeholder="Buscar">
+        </mat-grid-tile>
+      </mat-grid-list>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Columnas de la tabla -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+          </ng-container>
+          <ng-container matColumnDef="hour">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> hour </th>
+            <td mat-cell *matCellDef="let element"> {{element.hour}} </td>
+          </ng-container>
+          <ng-container matColumnDef="appointment_type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> appointment_type </th>
+            <td mat-cell *matCellDef="let element"> {{element.appointment_type}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          </ng-container>
+          <ng-container matColumnDef="payment">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> payment </th>
+            <td mat-cell *matCellDef="let element"> {{element.payment | currency:'USD':'symbol':'1.2-2'}} </td>
+          </ng-container>
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> username </th>
+            <td mat-cell *matCellDef="let element"> {{element.user.username}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="eliminar">
+            <th mat-header-cell *matHeaderCellDef> eliminar </th>
+            <td mat-cell *matCellDef="let element" (click)="eliminar(element.id)"> 
+              <mat-icon style="color:rgb(49, 101, 180)">delete</mat-icon>            
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="editar">
+            <th mat-header-cell *matHeaderCellDef> Actualizar </th>
+            <td mat-cell *matCellDef="let element" > 
+                <button mat-raised-button [routerLink]="['ediciones',element.id]"> Actualizar
+                  <mat-icon style="color:rgb(49, 101, 180)">edit</mat-icon> 
+                </button>          
+            </td>
+          </ng-container>
+            
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        <button mat-raised-button color="primary"
+        [routerLink]="['/appointment/nuevo']">
+                          <span class="material-icons">add_reaction</span>
+                          <p>Nueva Cita</p>
+                        </button>
+                        <button mat-raised-button color="primary"
+                        [routerLink]="['/appointment']">
+                          <span class="material-icons">add_reaction</span>
+                          <p>Regresar</p>
+                        </button>
+      </div>
+    </div>
+    
