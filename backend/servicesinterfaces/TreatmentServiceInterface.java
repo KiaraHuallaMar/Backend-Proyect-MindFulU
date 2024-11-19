@@ -6,21 +6,21 @@ import java.util.List;
 
 public interface TreatmentServiceInterface {
     //Registrar Tratamiento
-    public Treatment registrar (Treatment treatment);
+    public Treatment insert (Treatment treatment);
 
     //Listar por Id Tratamiento
-    public Treatment listarId(Long id);
+    public Treatment listId(Long id);
     //Listar Tratamiento
-    public List<Treatment> listar();
+    public List<Treatment> list();
 
     //Listar por Id Tratamiento
     // Tratamiento listarId(Long id);
 
     //Actualizar Tratamiento
-    public void actualizar(Treatment treatment);
+    public void update(Treatment treatment);
 
     //Eliminar Tratamiento
-    public void  eliminar(Long id);
+    public void  delete(Long id);
 
     //Eliminar Tratamiento
     // void eliminar(Long id);
