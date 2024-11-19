@@ -21,7 +21,7 @@ public class RoleController {
     @GetMapping("/listar")
     public List<RoleDTO> obtenerRoles(){
 
-        return roleServiceInterface.listar().stream().map(x->{
+        return roleServiceInterface.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,RoleDTO.class);
         }).collect(Collectors.toList());
@@ -32,14 +32,14 @@ public class RoleController {
     public void registrar(@RequestBody RoleDTO roleDTO){
         ModelMapper m = new ModelMapper();
         Role role = m.map(roleDTO, Role.class);
-        roleServiceInterface.registrar(role);
+        roleServiceInterface.insert(role);
     }
 
     //Listar por Id Rol
     @GetMapping("/{id}")
     public RoleDTO listarId(@PathVariable("id") Integer id){
         ModelMapper m=new ModelMapper();
-        RoleDTO roleDTO = m.map(roleServiceInterface.listarId(id),RoleDTO.class);
+        RoleDTO roleDTO = m.map(roleServiceInterface.listId(id),RoleDTO.class);
         return roleDTO;
     }
 
@@ -48,14 +48,14 @@ public class RoleController {
     public void actualizar(@RequestBody RoleDTO roleDTO){
         ModelMapper m=new ModelMapper();
         Role role=m.map(roleDTO,Role.class);
-        roleServiceInterface.actualizar(role);
+        roleServiceInterface.update(role);
     }
 
     //Eliminar Rol
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
 
-        roleServiceInterface.eliminar(id);
+        roleServiceInterface.delete(id);
     }
 
     //Buscar Rol
@@ -69,3 +69,4 @@ public class RoleController {
     }
 
 }
+
