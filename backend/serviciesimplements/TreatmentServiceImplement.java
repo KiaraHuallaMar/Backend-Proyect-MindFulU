@@ -14,25 +14,26 @@ public class TreatmentServiceImplement implements TreatmentServiceInterface {
 
     //Listar Tratamiento
     @Override
-    public List<Treatment> listar() {return treatmentRepository.findAll();}
+    public List<Treatment> list() {return treatmentRepository.findAll();}
 
     //Registrar Tratamiento
     @Override
-    public Treatment registrar(Treatment treatment) {return treatmentRepository.save(treatment);}
+    public Treatment insert(Treatment treatment) {return treatmentRepository.save(treatment);}
 
     //Listar por Id Tratamiento
     @Override
-    public Treatment listarId(Long id) {
+    public Treatment listId(Long id) {
         return treatmentRepository.findById(id).orElse(new Treatment());
     }
 
     //Actualizar Tratamiento
     @Override
-    public void actualizar(Treatment treatment) {treatmentRepository.save(treatment); }
+    public void update(Treatment treatment) {treatmentRepository.save(treatment); }
 
     //Eliminar Tratamiento
     @Override
-    public void eliminar(Long id) {
+    public void delete(Long id) {
         treatmentRepository.deleteById(id);
     }
 }
+
