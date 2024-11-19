@@ -1,0 +1,70 @@
+<div>
+    <div class="container" style="text-align: center">
+      <h1>Tratamientos</h1>
+      <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>name</mat-label>
+          <input
+            matInput
+            required
+            placeholder="name"
+            formControlName="name"
+          />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>category_type</mat-label>
+          <input
+            matInput
+            required
+            placeholder="category_type"
+            formControlName="category_type"
+          />
+        </mat-form-field>
+        <br />
+
+        <mat-form-field class="example-full-width">
+            <mat-label>description</mat-label>
+            <input
+              matInput
+              required
+              placeholder="description"
+              formControlName="description"
+            />
+          </mat-form-field>
+          <br />
+
+          <mat-form-field class="example-full-width">
+            <mat-label>payment</mat-label>
+            <input
+              type="number"
+              matInput
+              required
+              placeholder="payment"
+              formControlName="payment"
+            />
+          </mat-form-field>
+          <br />
+
+        <button mat-raised-button color="primary" type="submit">
+          Aceptar
+        </button>
+  
+        <button mat-raised-button color="warn" (click)="cancelar()">
+          Cancelar
+        </button>
+        <p>{{ mensaje }}</p>
+      </form>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
