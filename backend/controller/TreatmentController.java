@@ -2,6 +2,7 @@ package edu.com.upc.minfulu.dbprojectmindfulu.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import edu.com.upc.minfulu.dbprojectmindfulu.dtos.TreatmentDTO;
 import edu.com.upc.minfulu.dbprojectmindfulu.entities.Treatment;
@@ -12,48 +13,54 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/treatment")
+//@PreAuthorize("hasAuthority('ADMINISTRADOR')")
 public class TreatmentController {
     @Autowired
     private TreatmentServiceInterface treatmentServiceInterface;
 
     //Listar Tratamiento
-    @GetMapping
+    @GetMapping("/listar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','USUARIO')")
     public List<TreatmentDTO> obtenerTratamientos(){
 
-        return treatmentServiceInterface.listar().stream().map(x->{
+        return treatmentServiceInterface.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,TreatmentDTO.class);
         }).collect(Collectors.toList());
     }
 
     //Registrar Tratamiento
-    @PostMapping
+    @PostMapping("/registrar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','UNIVERSITARIO')")
     public void registrar(@RequestBody TreatmentDTO treatmentDTO){
         ModelMapper m = new ModelMapper();
         Treatment treatment = m.map(treatmentDTO, Treatment.class);
-        treatmentServiceInterface.registrar(treatment);
+        treatmentServiceInterface.insert(treatment);
     }
 
     //Listar por Id Tratamiento
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','UNIVERSITARIO')")
     public TreatmentDTO listarId(@PathVariable("id") Long id){
         ModelMapper m=new ModelMapper();
-        TreatmentDTO treatmentDTO = m.map(treatmentServiceInterface.listarId(id),TreatmentDTO.class);
+        TreatmentDTO treatmentDTO = m.map(treatmentServiceInterface.listId(id),TreatmentDTO.class);
         return treatmentDTO;
     }
 
     //Actualizar Tratamiento
-    @PutMapping
+    @PutMapping("/actualizar")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','UNIVERSITARIO')")
     public void actualizar(@RequestBody TreatmentDTO treatmentDTO){
         ModelMapper m=new ModelMapper();
         Treatment treatment = m.map(treatmentDTO,Treatment.class);
-        treatmentServiceInterface.actualizar(treatment);
+        treatmentServiceInterface.update(treatment);
     }
 
     //Eliminar Tratamiento
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMINISTRADOR','UNIVERSITARIO')")
     public void eliminar(@PathVariable("id") Long id){
 
-        treatmentServiceInterface.eliminar(id);
+        treatmentServiceInterface.delete(id);
     }
 }
