@@ -6,19 +6,19 @@ import java.util.List;
 
 public interface RoleServiceInterface {
     //Listar Rol
-    public List<Role> listar();
+    public List<Role> list();
 
     //Registrar Rol
-    public Role registrar (Role role);
+    public Role insert (Role role);
 
     //Listar por Id Rol
-    public Role listarId(int id);
+    public Role listId(int id);
 
     //Actualizar Rol
-    public void actualizar(Role role);
+    public void update(Role role);
 
     //Eliminar Rol
-    public void  eliminar(int id);
+    public void  delete(int id);
 
     //Buscar Rol
     public List<Role> buscar (String rol);
