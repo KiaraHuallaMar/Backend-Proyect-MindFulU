@@ -1,3 +1,4 @@
+
 package edu.com.upc.minfulu.dbprojectmindfulu.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,3 +35,4 @@ public class User {
     @JoinColumn(name = "rol_id")
     private Role role;
 }
+
