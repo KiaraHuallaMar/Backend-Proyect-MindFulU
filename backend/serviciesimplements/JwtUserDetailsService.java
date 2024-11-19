@@ -1,5 +1,6 @@
 package edu.com.upc.minfulu.dbprojectmindfulu.serviciesimplements;
 
+import edu.com.upc.minfulu.dbprojectmindfulu.entities.Role;
 import edu.com.upc.minfulu.dbprojectmindfulu.entities.User;
 import edu.com.upc.minfulu.dbprojectmindfulu.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository repo;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repo.findOneByUsername(username);
@@ -29,13 +29,19 @@ public class JwtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("User not exists", username));
         }
 
-        List<GrantedAuthority> roles = new ArrayList<>();
+        Role role = user.getRole();
 
-        user.getRoles().forEach(rol -> {
-            roles.add(new SimpleGrantedAuthority(rol.getRole()));
-        });
+        List<GrantedAuthority> authorities = new ArrayList<>();
 
-        UserDetails ud = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, roles);
+        authorities.add(new SimpleGrantedAuthority(role.getRole()));
+
+        UserDetails ud = new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getEnabled(),
+                true, true, true,
+                authorities
+        );
 
         return ud;
     }
