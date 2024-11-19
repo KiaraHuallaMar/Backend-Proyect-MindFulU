@@ -1,0 +1,70 @@
+<mat-toolbar class="custom-toolbar" *ngIf="verificar()">
+  <div class="left-menu">
+    <button mat-button [routerLink]="['/homes']" style="color: white">
+      <mat-icon>home</mat-icon>Home
+    </button>
+      <button mat-button [matMenuTriggerFor]="menuSV64" style="color: white">
+        <mat-icon>account_circle</mat-icon>Usuarios
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuCitas" style="color: white">
+        <mat-icon>assignment</mat-icon>Citas
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuespecialistas" style="color: white">
+        <mat-icon>open_in_new</mat-icon>Especialistas
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuapoyo" style="color: white">
+        <mat-icon>open_in_new</mat-icon>Grupos de Apoyo
+      </button>
+      <button mat-button [matMenuTriggerFor]="menuTratamiento" style="color: white">
+        <mat-icon>open_in_new</mat-icon>Tratamientos
+      </button>
+      <button mat-button [matMenuTriggerFor]="menusosbutton" style="color: white">
+        <mat-icon>open_in_new</mat-icon>BotonSos
+      </button>
+    </div>
+  </mat-toolbar>
+  <mat-menu #menuSV64="matMenu">
+    <button mat-menu-item routerLink="/users" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/users/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuCitas="matMenu">
+    <button mat-menu-item routerLink="/appointment" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/appointment/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+  
+  <mat-menu #menuespecialistas="matMenu">
+    <button mat-menu-item routerLink="/specialist" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/specialist/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuapoyo="matMenu">
+    <button mat-menu-item routerLink="/supportgroup" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/supportgroup/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menuTratamiento="matMenu">
+    <button mat-menu-item routerLink="/treatment" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/treatment/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+
+  <mat-menu #menusosbutton="matMenu">
+    <button mat-menu-item routerLink="/sosbutton" class="custom-menu-item">Listar</button>
+    <button mat-menu-item routerLink="/sosbutton/nuevo" class="custom-menu-item">Registrar</button>
+  </mat-menu>
+  <mat-menu #menuSalir="matMenu">
+    <button
+      mat-menu-item
+      routerLink="/login"
+      (click)="cerrar()"
+      class="custom-menu-item"
+    >
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesión</span>
+    </button>
+    <button mat-menu-item class="custom-menu-item">
+      Rol:
+      <span>{{ role }}</span>
+    </button>
+  </mat-menu>
+  <router-outlet></router-outlet>

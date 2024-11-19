@@ -1,0 +1,86 @@
+<div>
+    <div class="container" style="text-align: center">
+      <h1>Registrar cita</h1>
+      <form [formGroup]="form" (submit)="guardar()" class="example-form">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput formControlName="acodigo" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>description</mat-label>
+          <input
+            matInput
+            required
+            placeholder="description"
+            formControlName="adescription"
+          />
+        </mat-form-field>
+        <br />
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha Inicio</mat-label>
+          <input matInput [matDatepicker]="picker1" placeholder="start_date"
+          formControlName="astart_date">
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <br />
+    
+        <mat-form-field class="example-full-width">
+            <mat-label>Fecha Fin</mat-label>
+            <input matInput [matDatepicker]="picker2" placeholder="end_date"
+            formControlName="aend_date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <br />
+
+        <mat-form-field class="example-full-width">
+          <mat-label>hora</mat-label>
+          <input
+            matInput
+            required
+            placeholder="hour"
+            formControlName="ahour"
+          />
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+            <mat-label>reason</mat-label>
+            <input
+              matInput
+              required
+              placeholder="reason"
+              formControlName="areason"
+            />
+          </mat-form-field>
+          <br>
+  
+        <mat-form-field>
+            <mat-label>Universitarios</mat-label>
+            <mat-select formControlName="auser">
+              @for (food of listaUser; track food) {
+              <mat-option [value]="food.id">{{ food.username }}</mat-option>
+              }
+            </mat-select>
+            <mat-error *ngIf="form.get('auser')?.hasError('required')">
+              Seleccione un Universitario
+            </mat-error>
+          </mat-form-field>
+        <br />
+  
+      
+        <button mat-raised-button color="primary" type="submit">
+          Aceptar
+        </button>
+  
+        <button mat-raised-button color="warn" [routerLink]="['/sosbutton']">
+          Cancelar
+        </button>
+      </form>
+    </div>
+  </div>
+  
